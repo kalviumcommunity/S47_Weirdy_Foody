@@ -1,8 +1,11 @@
 const express=require("express");
 const app=express();
+const post=3000
 
-app.get("/ping",(req,res)=>{
+app.get("/",(req,res)=>{
     res.send("Weirdy Foody");
 })
 
-var server= app.listen(3000);
+app.listen(port, () => {
+    console.log(`server is running on PORT: ${port}`);
+});
