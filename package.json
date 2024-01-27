@@ -6,20 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords":[],
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
     "express": "^4.18.2",
     "mongo": "^0.1.0",
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.1"
-=======
-    "express": "^4.18.2"
-  },
-  "devDependencies": {
-    "nodemon":"^3.0.3"
->>>>>>> 09f5d8b9074e8a365044077ba16ca68a04f3d0e8
   }
 }
