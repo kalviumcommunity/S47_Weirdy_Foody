@@ -15,6 +15,8 @@ app.post("/post",rout.post)
 
 app.put("/put/:id",rout.put)
 
+app.delete("/delete/:id",rout.del)
+
 app.get("/:id",(req,res)=>{
     const tt=req.params.id
     mongoose.connect(data)
