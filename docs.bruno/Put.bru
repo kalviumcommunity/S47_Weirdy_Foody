@@ -1,0 +1,18 @@
+meta {
+  name: Put
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:4000/get
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "Name":"Aniket",
+    "Age":19
+  }
+}
