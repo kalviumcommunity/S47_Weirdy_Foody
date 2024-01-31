@@ -1,6 +1,7 @@
 const express=require("express");
 const app=express();
 const arr=require("./data.json")
+
 const get=app.get("/get",(req,res)=>{
     res.json(arr)
 })
@@ -16,8 +17,7 @@ const put=app.put("/put/:id",(req,res)=>{
             data=req.body
             arr[id]=data
             res.json(data)
-        }
-        
+        }  
     })
 })
 
