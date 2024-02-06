@@ -8,7 +8,7 @@ function Create() {
     const[ingrediensts,setingre]=useState([])
     const[image,setimg]=useState()
     const navigate=useNavigate()
-    
+
     const submit=(e)=>{
         e.preventDefault()
         axios.post("http://localhost:4000/create",{name,ingrediensts,state,image})
@@ -20,7 +20,7 @@ function Create() {
         setname(e.target.value)
     }
     const handleingre=(e)=>{
-        setingre(e.target.value)
+        setingre((e.target.value).split(","))
     }
     const handlestate=(e)=>{
         setstate(e.target.value)
