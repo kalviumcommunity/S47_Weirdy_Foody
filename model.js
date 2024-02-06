@@ -2,10 +2,10 @@ const mongoose=require('mongoose')
 
 const datavelidation=new mongoose.Schema({
     name:String,
-    ingredients:Array,
+    ingrediensts:[String],
     state:String,
     image:String
 })
 
-const datamodel=mongoose.model("Foods",datavelidation)
-module.exports =datamodel   
+const datamodel=mongoose.model("foods",datavelidation)
+module.exports =datamodel

@@ -1,32 +1,35 @@
 const express=require("express");
 const mongoose= require("mongoose");
 const arr=require("./data.json");
-const app=express();
 const rout=require("./route")
 const cors=require('cors')
-const Model=require("./model.js");
-const { MongoClient } = require("mongodb");
+const dataModel=require("./model.js");
 
-
+const app=express();
 app.use(express.json())
 app.use(cors())
 
 
-const data='mongodb+srv://aniketg:FOT8yjNAFZj39q0m@cluster0.wikddym.mongodb.net/?retryWrites=true&w=majority'
-const client=new MongoClient(data,{ useNewUrlParser:true , useUnifiedTopology:true })
-client.connect()
-.then(()=>{
+mongoose.connect('mongodb+srv://aniketg:FOT8yjNAFZj39q0m@cluster0.wikddym.mongodb.net/?retryWrites=true&w=majority',{
+    dbName:"Food_Data"
+}).then(()=>{
     console.log("connected")
-    const database=client.db('Food_Data')
-    const collection=database.collection("Foods")
-
-    app.get('/display',async(req,res)=>{
-        const result = await collection.find({}).toArray()
-        res.json(result)
-    })
 }).catch((error)=>{
     console.log(error)
 })
+
+
+    app.get('/display',async(req,res)=>{
+        await dataModel.find({})
+        .then(result=>res.json(result))
+        .catch(err => res.json(err))
+    })
+
+    app.post('/create',async(req,res)=>{
+        await dataModel.create(req.body)
+        .then(result=>res.json(result))
+        .catch(err => console.log(err))
+    })
 
 
 // app.get("/get",rout.get)
