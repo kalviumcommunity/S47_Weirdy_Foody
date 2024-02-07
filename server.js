@@ -31,6 +31,27 @@ mongoose.connect('mongodb+srv://aniketg:FOT8yjNAFZj39q0m@cluster0.wikddym.mongod
         .catch(err => console.log(err))
     })
 
+    app.get('/edit/:id',(req,res)=>{
+        const id=req.params.id
+        //console.log(id)
+        dataModel.findById(id)
+        .then(result=>res.json(result))
+        .catch(err => console.log(err))
+    })
+
+    app.put('/update/:id',async(req,res)=>{
+        const {id}=req.params
+        await dataModel.findByIdAndUpdate(id,req.body)
+        .then(result=>res.json(result))
+        .catch(err => console.log(err))
+    })
+
+    app.delete('/delete/:id',async(req,res)=>{
+        const {id}=req.params
+        await dataModel.findByIdAndDelete(id)
+        .then(result=>res.json(result))
+        .catch(err => console.log(err))
+    })
 
 // app.get("/get",rout.get)
 

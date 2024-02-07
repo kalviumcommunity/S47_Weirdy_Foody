@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 function Home() {
     const [data,setdata]=useState([])
@@ -9,6 +10,14 @@ function Home() {
         .then((datas)=>setdata(datas))
         console.log(data)
     },[])
+
+    const handledelete=(id)=>{
+        axios.delete("http://localhost:4000/delete/"+id)
+        .then(res=>{console.log(res)
+            window.location.reload(true)})
+        .catch(err=>console.log(err))
+    }
+
     return (
         <div className='head'>
             <h2 className='heading'>Weirdly Foody</h2>
@@ -21,7 +30,7 @@ function Home() {
                         <h4>Name : {item.name}</h4>
                         <h4> Ingredients :</h4>
                         <ul>
-                            {console.log(item)}
+                            {/* {console.log(item)} */}
                         {item.ingrediensts.map((ingredient,index)=>{
                             return(
                             <li key={index}>{ingredient}</li>
@@ -29,8 +38,8 @@ function Home() {
                         }
                         </ul>
                         <h4>State : {item.state}</h4>
-                        <button>Edit</button>
-                        <button>Delete</button>
+                        <button><Link to={`/edit/${item._id}`}>Edit</Link></button>
+                        <button onClick={()=>handledelete(item._id)}>Delete</button>
                     </div>
                 </div>
             ))}

@@ -7,7 +7,7 @@ function Create() {
     const[state,setstate]=useState()
     const[ingrediensts,setingre]=useState([])
     const[image,setimg]=useState()
-    const navigate=useNavigate()
+    const navigate=useNavigate("/")
 
     const submit=(e)=>{
         e.preventDefault()
@@ -31,6 +31,7 @@ function Create() {
 
   return (
     <form onSubmit={submit}>
+        <h3>Create</h3>
         <div>
             <h5>Name</h5>
             <input type="text" onChange={handlename}/>
