@@ -7,6 +7,7 @@ const dataModel=require("./model.js");
 const {validatedata}=require("./newmodel.js");
 
 const app=express();
+
 app.use(express.json())
 app.use(cors())
 
@@ -37,6 +38,7 @@ mongoose.connect('mongodb+srv://aniketg:FOT8yjNAFZj39q0m@cluster0.wikddym.mongod
         .then(result=>res.json(result))
         .catch(err => console.log(err))
     })
+
 
     app.get('/edit/:id',(req,res)=>{
         const id=req.params.id
