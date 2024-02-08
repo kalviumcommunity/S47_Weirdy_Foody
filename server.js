@@ -4,6 +4,7 @@ const arr=require("./data.json");
 const rout=require("./route")
 const cors=require('cors')
 const dataModel=require("./model.js");
+const {validatedata}=require("./newmodel.js");
 
 const app=express();
 app.use(express.json())
@@ -26,6 +27,12 @@ mongoose.connect('mongodb+srv://aniketg:FOT8yjNAFZj39q0m@cluster0.wikddym.mongod
     })
 
     app.post('/create',async(req,res)=>{
+        const{name,ingrediensts,state,image}=req.body
+        const {error}=validatedata(req.body)
+        if(error){
+            return res.json({data:error.message})
+        }
+
         await dataModel.create(req.body)
         .then(result=>res.json(result))
         .catch(err => console.log(err))

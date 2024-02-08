@@ -7,14 +7,22 @@ function Create() {
     const[state,setstate]=useState()
     const[ingrediensts,setingre]=useState([])
     const[image,setimg]=useState()
-    const navigate=useNavigate("/")
+    const[error,seterror]=useState('')
+    const navigate=useNavigate()
 
     const submit=(e)=>{
         e.preventDefault()
         axios.post("http://localhost:4000/create",{name,ingrediensts,state,image})
-        .then(res=> console.log(res))
+        .then(res=> {
+        if(res.data.data){
+            console.log(res.data.data)
+            seterror(res.data.data)
+        }else{
+            navigate('/')
+            // console.log(res.data.data)
+        }
+    })
         .catch(err=>console.log(err))
-        navigate("/")
     }
     const handlename=(e)=>{
         setname(e.target.value)
@@ -48,6 +56,8 @@ function Create() {
             <h5>Image</h5>
             <input type="text" onChange={handleimg}/>
         </div>
+        {/* <p>{error}</p> */}
+        {error !== '' && <p>{error}</p>}
         <button>submit</button>
     </form>
   )

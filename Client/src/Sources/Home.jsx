@@ -6,7 +6,7 @@ function Home() {
     const [data,setdata]=useState([])
     useEffect(()=>{
         fetch('http://localhost:4000/display')
-        .then((res)=>res.json(res))
+        .then((res)=>res.json())
         .then((datas)=>setdata(datas))
         console.log(data)
     },[])
@@ -23,7 +23,7 @@ function Home() {
             <h2 className='heading'>Weirdly Foody</h2>
             <hr />
             <button><Link to="/create">Add new Ingridients</Link></button>
-            {data.map((item,index)=>(
+            {data && data.map((item,index)=>(
                 <div id={index} className='container'>
                     <img src={item.image} alt="" />
                     <div>
