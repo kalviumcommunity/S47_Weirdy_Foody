@@ -18,7 +18,7 @@ function Create() {
             console.log(res.data.data)
             seterror(res.data.data)
         }else{
-            navigate('/')
+            navigate('/home')
             // console.log(res.data.data)
         }
     })

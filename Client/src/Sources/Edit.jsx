@@ -8,7 +8,7 @@ function Edit() {
         const[state,setstate]=useState()
         const[ingrediensts,setingre]=useState([])
         const[image,setimg]=useState()
-        const navigate=useNavigate("/")
+        const navigate=useNavigate("/home")
     
         useEffect(()=>{
             // console.log('Data')
