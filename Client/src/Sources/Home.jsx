@@ -5,7 +5,6 @@ import axios from 'axios'
 function Home() {
     const [data,setdata]=useState([])
     const nevigate=useNavigate()
-    const name=(decodeURIComponent(document.cookie).split(";"))
     useEffect(()=>{
         fetch('http://localhost:4000/display')
         .then((res)=>res.json())
@@ -24,16 +23,13 @@ function Home() {
         document.cookie="username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
         document.cookie="email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
         document.cookie="name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+
+        document.cookie="token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
         nevigate('/')
-        window.location.reload(true)
     }
     return (
         <div className='head'>
             <h2 className='heading'>Weirdly Foody</h2>
-            {name.map((data,index)=>{
-                return(
-                <h4 key={index}>{data}</h4>)
-            })}
             <hr />
             <button><Link to="/create">Add new Ingridients</Link></button>
             <button onClick={logout}>Logout</button>

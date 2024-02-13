@@ -5,6 +5,7 @@ const rout=require("./route")
 const cors=require('cors')
 const dataModel=require("./model.js");
 const {validatedata}=require("./newmodel.js");
+const jwt=require("jsonwebtoken");
 
 const app=express();
 app.use(express.json())
@@ -19,6 +20,12 @@ mongoose.connect('mongodb+srv://aniketg:FOT8yjNAFZj39q0m@cluster0.wikddym.mongod
     console.log(error)
 })
 
+    app.post("/",(req,res)=>{
+        const secret="Aniket"
+        const token=jwt.sign({data:req.body},secret,{expiresIn:'3000000'})
+        res.send(token)
+        // console.log(token)
+    })
 
     app.get('/display',async(req,res)=>{
         await dataModel.find({})
