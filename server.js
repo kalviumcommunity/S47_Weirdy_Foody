@@ -7,6 +7,7 @@ const dataModel=require("./model.js");
 const {validatedata}=require("./newmodel.js");
 const jwt=require("jsonwebtoken");
 
+
 const app=express();
 app.use(express.json())
 app.use(cors())
