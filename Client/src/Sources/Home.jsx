@@ -4,6 +4,17 @@ import axios from 'axios'
 
 function Home() {
     const [data,setdata]=useState([])
+    const [states,setstates]=useState('All')
+    const [unistate,setunistate]=useState([])
+
+    let filterstate=data.filter((item)=>{
+        if(states=="All"){
+            return item
+        }else{
+            return item.state==states
+        }
+    })
+
     const nevigate=useNavigate()
     useEffect(()=>{
         fetch('http://localhost:4000/display')
@@ -27,13 +38,27 @@ function Home() {
         document.cookie="token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
         nevigate('/')
     }
+
+    useEffect(()=>{
+        data.map((item)=>{
+            if(!unistate.includes(item.state)){
+                setunistate([...unistate,item.state])
+            }
+        })
+    })
     return (
         <div className='head'>
             <h2 className='heading'>Weirdly Foody</h2>
             <hr />
             <button><Link to="/create">Add new Ingridients</Link></button>
-            <button onClick={logout}>Logout</button>
-            {data && data.map((item,index)=>(
+            <button onClick={logout}>Logout</button> <br />
+            <select name="" id="" onChange={(e)=>{setstates(e.target.value)}}>
+                <option value="All">All</option>
+                {unistate.map((item)=>{
+                    return <option value={item}>{item}</option>
+                })}
+            </select>
+            {filterstate.map((item,index)=>(
                 <div id={index} className='container'>
                     <img src={item.image} alt="" />
                     <div>
